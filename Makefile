@@ -1,9 +1,18 @@
 .PHONY: \
+	build-pyci-env \
 	dev-build-test-environment \
 	dev-inspect-test-environment
 
-PYCI_DEV_DOCKERFILE_PATH := ./dev/dev.Dockerfile
+PYCI_DEV_DOCKERFILE_PATH := ./dev/dev.test.Dockerfile
 PYCI_DEV_IMAGE_NAME      := pyci-dev-environment
+PYCI_VENV_NAME           := pyci-env
+
+# this make command builds the virtual environment for pyci
+build-pyci-env:
+	@python3 -m venv $(PYCI_VENV_NAME) && \
+		$(PYCI_VENV_NAME)/bin/pip install -r requirements.txt
+
+# MARK: dev targets
 
 # this make target builds the docker image that is used for development
 #   e.g. testing

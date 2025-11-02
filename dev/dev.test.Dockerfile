@@ -4,6 +4,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN python3 --version
+RUN make build-pyci-env
 
 CMD ["/bin/bash"]
